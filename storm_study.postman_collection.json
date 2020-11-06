@@ -1,0 +1,374 @@
+{
+	"id": "d30a9bdb-3d8f-43d6-b956-b241da4c799d",
+	"name": "storm_study",
+	"description": "study file",
+	"auth": null,
+	"events": null,
+	"variables": [],
+	"order": [
+		"60b2afdb-1366-40d8-8e5c-f2fb41c17439",
+		"46c251a3-81e7-4285-b103-d7c26c88b851",
+		"2e26fa7f-6671-4746-bbee-c58c5f34bdb5",
+		"3e529f12-de85-4acb-bae4-f913fd8d1b76",
+		"6f0c9558-ab1c-4898-83b9-b5842a41f679",
+		"6705b9be-6a5a-4df1-94c1-4753598a9835",
+		"6e4b12d2-8921-4b9f-8f73-9588f936cdc3",
+		"a4305fbd-98dc-47ba-ae18-4383badd27f6",
+		"cbdc7ed6-1987-4627-8bfa-0328b4ee4473"
+	],
+	"folders_order": [],
+	"protocolProfileBehavior": {},
+	"folders": [],
+	"requests": [
+		{
+			"id": "2e26fa7f-6671-4746-bbee-c58c5f34bdb5",
+			"name": "storm-003",
+			"url": "http://{{domain}}/getuser",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": null,
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "19d93c28-47cd-43cf-8c5e-56ec93b6787e",
+						"exec": [
+							"pm.test(\"test response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"pathVariables": {}
+		},
+		{
+			"id": "3e529f12-de85-4acb-bae4-f913fd8d1b76",
+			"name": "storm-010",
+			"url": "http://{{domain}}/getuser2?userid=1",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "userid",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": null,
+			"folder": null,
+			"headers": "Content-Type: application/json\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "46c251a3-81e7-4285-b103-d7c26c88b851",
+			"name": "storm-002",
+			"url": "http://{{domain}}/getuser?userid=2",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": null,
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "userid",
+					"value": "2",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "17a4a6ae-41f7-484b-b87e-14842bcaaa73",
+						"exec": [
+							"pm.test(\"test response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.msg).to.eql(\"没有这个用户\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"pathVariables": {}
+		},
+		{
+			"id": "60b2afdb-1366-40d8-8e5c-f2fb41c17439",
+			"name": "storm-001",
+			"url": "http://{{domain}}/getuser?userid=1",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": [],
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "userid",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6aad874-6bd6-4bac-85b4-ea0277ab0684",
+						"exec": [
+							"//判断响应等于\r",
+							"pm.test(\"Body is correct\", function () {\r",
+							"    pm.response.to.have.body('{\"code\": 200, \"id\": \"1\", \"name\": \"\\\\u5c0f\\\\u660e\", \"age\": 18}');\r",
+							"});\r",
+							"\r",
+							"//判断响应体code=200\r",
+							"pm.test(\"test Response code\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"headers": "",
+			"pathVariables": {}
+		},
+		{
+			"id": "6705b9be-6a5a-4df1-94c1-4753598a9835",
+			"name": "storm-012",
+			"url": "http://{{domain}}/getmoney",
+			"description": "",
+			"data": [],
+			"dataOptions": null,
+			"dataMode": "raw",
+			"headerData": null,
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e7a20d41-4cd0-480f-8733-9300d72629aa",
+						"exec": [
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.code).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"rawModeData": "{\r\n    \"userid\":1\r\n}",
+			"pathVariables": {}
+		},
+		{
+			"id": "6e4b12d2-8921-4b9f-8f73-9588f936cdc3",
+			"name": "strom-013",
+			"url": "http://{{domain}}/setmoney",
+			"description": "",
+			"data": [
+				{
+					"key": "userid",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "money",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataOptions": null,
+			"dataMode": "params",
+			"headerData": null,
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "basic",
+				"basic": [
+					{
+						"key": "password",
+						"value": "123456"
+					},
+					{
+						"key": "username",
+						"value": "admin"
+					}
+				]
+			},
+			"events": null,
+			"folder": null,
+			"pathVariables": {}
+		},
+		{
+			"id": "6f0c9558-ab1c-4898-83b9-b5842a41f679",
+			"name": "storm-011",
+			"url": "http://{{domain}}/getmoney?userid=1",
+			"description": "",
+			"data": null,
+			"dataOptions": null,
+			"dataMode": null,
+			"headerData": null,
+			"method": "GET",
+			"pathVariableData": [],
+			"queryParams": [
+				{
+					"key": "userid",
+					"value": "1",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"auth": null,
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "8495a4c9-2014-49fd-a73a-8467bade5af1",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"pathVariables": {}
+		},
+		{
+			"id": "a4305fbd-98dc-47ba-ae18-4383badd27f6",
+			"name": "storm-014",
+			"url": "http://{{domain}}/setmoney2",
+			"description": "",
+			"data": [
+				{
+					"key": "userid",
+					"value": "1",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				},
+				{
+					"key": "money",
+					"value": "200",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"dataOptions": null,
+			"dataMode": "params",
+			"headerData": [
+				{
+					"key": "Cookie",
+					"value": "token=token12345",
+					"description": "",
+					"type": "text",
+					"enabled": true
+				}
+			],
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "noauth",
+				"noauth": []
+			},
+			"events": null,
+			"folder": null,
+			"headers": "Cookie: token=token12345\n",
+			"pathVariables": {}
+		},
+		{
+			"id": "cbdc7ed6-1987-4627-8bfa-0328b4ee4473",
+			"name": "storm-200",
+			"url": "http://{{domain}}/uploadfile",
+			"description": "",
+			"data": [
+				{
+					"key": "file",
+					"value": "/C:/Users/30855/Desktop/test.txt",
+					"description": "",
+					"type": "file",
+					"enabled": true
+				}
+			],
+			"dataOptions": null,
+			"dataMode": "params",
+			"headerData": null,
+			"method": "POST",
+			"pathVariableData": [],
+			"queryParams": [],
+			"auth": {
+				"type": "noauth",
+				"noauth": []
+			},
+			"events": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2c8cd267-3020-4115-85cf-b403ad742531",
+						"exec": [
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.status).to.eql(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"folder": null,
+			"pathVariables": {}
+		}
+	]
+}
